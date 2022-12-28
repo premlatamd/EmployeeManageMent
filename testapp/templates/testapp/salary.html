@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script src="https://kit.fontawesome.com/39cd6f5dff.js" crossorigin="anonymous"></script>
+        <title>Registerd Employee</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        {% comment %} <link rel="stylesheet" href="{% static 'css/mycss.css' %}"> {% endcomment %}
+        
+    </head>
+    <body>
+        <style>
+
+            .p{
+                width:100%;
+                margin:0 auto;
+              }
+              
+              table{
+              background-color: black;
+                color:white;
+                margin-left: 2.5%;
+                margin-right: 0%;
+                width:95%;
+              }
+              
+              {% comment %} table:nth-child(2n){
+                background-color: black;
+                color:white;
+                margin-left: 0%;
+                width:5%;
+                float:left;
+              } {% endcomment %}
+              
+              {% comment %} table{
+                
+                float:left;
+              } {% endcomment %}
+
+              table, td, th {  
+                border: 1px solid white;
+                text-align: center;
+                padding: 5px;
+              }
+
+              .hbox{
+                color:whitesmoke;
+                background-color:rgb(122, 12, 34);
+                border: 2px solid rgb(43, 4, 14);
+            }
+            
+        </style> 
+        <div class='container mt-3 p'>
+            <div class='row'>
+            <div class='col-sm-12'>
+                <h4 class='text-center hbox'>SALARY DETAILS</h4>
+            </div>
+        </div> 
+                        
+                <div class='row'>   
+                    <div class='col-sm-12'>
+                        <table>
+                            <tr>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-1">Attendence Date<br><br><br></th>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-.5">Emp Id<br><br><br></th>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-2">Name<br><br><br></th>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-1">Working Level<br><br><br></th>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-1">Entry Time<br><br><br></th>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-1">Exist Time<br><br><br></th>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-1">Working Time<br><br>(Hrs.)</th>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-1">Salary Per Hour<br>(Rs.)</th>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-1">Total Salary<br><br>(Rs.)</th>
+                                 
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class="col-sm-2">Action<br><br><br></th>
+                                <th style='background-color:rgb(7, 29, 7); color:white;' class='col-sm-1'>PAID<br><br><br></th>
+                            
+                            </tr>
+                            {% for i in p %}
+                           
+                            <tr>
+                            <td>{{i.date}}</td>
+                            <td>{{i.emp_id_id}}</td>
+                            <td>{{i.name}}</td>
+                            <td>{{i.Work_type}}</td>
+                            <td>{{i.In_Time}}</td>
+                            <td>{{i.Out_Time}}</td> 
+                            <td>{{i.duration}}</td>
+                            <td>{{i.Salary}}</td> 
+                            <td>{{i.sub_total}}</td>                           
+                            <td>    
+                                <i style="color:darkgreen" class="fa-solid fa-sack-dollar"></i>
+                                <form action='' method='GET' class='d-inline' novalidate>
+                                    {% csrf_token %}
+                                    <a href="/payment/{{i.id}}/0"  class='btn btn-warning btn-sm' role='button'>Payment</a>
+                                </form>
+                            </td>
+                            
+                                <td id='w'>
+                                    <script type='text/javascript'>
+                                        var l="{{i.paid}}";
+                                        console.log(l);
+                                        
+                                        if(l == "True"){
+                                            let z=document.getElementById('w');
+                                            z.innerHtml='<span class="field-paid"><img src="/static/admin/img/icon-yes.svg" alt="True" width="31" height="31"></span>';
+                                            document.write(z.innerHtml);
+                                        
+                                        }
+                                        else{
+                                            let z=document.getElementById('w');
+                                            z.innerHtml='<span class="field-paid"><img src="/static/admin/img/icon-no.svg" alt="False" width="31" height="31"></span>';
+                                            document.write(z.innerHtml);
+                                        
+                                        }
+                                        </script>
+                                </td>  
+                        </tr>
+                        
+                    {% endfor %}
+                    </table><br>
+                     
+                </div> 
+                {% comment %}
+                
+                
+                
+                  {% comment %} <div class='col-sm-1'> 
+                    <table>
+                       
+                    
+                            
+
+                                {% for i in t %}
+                                {% for j in i %}  
+                                
+                                {% endfor %}
+                                {% endfor %}
+                                {% comment %} {% if t.paid == "True" %}
+                                 <td style='color:white;'><a class='btn btn-secondary btn-sm'>{{i.paid}}</a></td> 
+                                <td class="field-paid"><img src="/static/admin/img/icon-yes.svg" alt="True"></td>
+                                {% else %}
+                                <td class="field-paid"><img src="/static/admin/img/icon-no.svg" alt="False"></td>
+                                {% endif %} 
+                            
+                            
+                    </table>
+                {% comment %} </div> {% endcomment %}
+                </div>
+                <a style='margin-left:2.5%;' href="{% url 'home' %}" class='btn btn-info'>Back To Home</a>
+                </div>  
+    </body>
+</html>

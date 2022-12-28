@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Registerd Employee</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mycss.css' %}">
+    </head>
+    <body>
+        <div class='container mt-3'>
+        <div class='row'>
+            <div class='col-sm-8 offset-2'>
+               
+                <h2 class='hbox'>UPDATE DATA</h2>
+              
+                <form action="" method="post" novalidate>
+                    {% csrf_token %}
+                    {{fm.as_p}}
+                    <input type='submit' value='UPDATE' class='btn btn-success'/>
+        
+                    <a href="{% url 'info' %}" class='btn btn-info'>BACK</a>
+                </form> 
+                {% if messages %}
+                <ul class="alert alert-success" style="list-style: none;">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    {% endif %}
+            </div>
+            
+        </div>
+       
+    </div>
+        
+        <script src="" async defer></script>
+    </body>
+</html>

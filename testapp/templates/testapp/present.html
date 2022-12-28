@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mycss.css' %}">
+    </head>
+    <body>
+        <style>
+            .p{
+                width:100%;
+                margin:0 auto;
+              }
+              
+              table{
+                background-color: black;
+                color:white;
+                margin-left: 5%;
+                margin-right: 0%;
+                width:90%;
+              }
+              table, td, th {  
+                border: 1px solid white;
+                text-align: center;
+                padding: 5px;
+              }
+              
+        </style>
+        <div class='container mt-3'>
+        <div class='row'>
+        <div class='col-sm-12'>
+            
+        <form action="" method='POST'>
+            {% csrf_token %}
+            <label for="empsearch"><strong>Enter month and year:</strong></label>
+            <input type="month" id="empsearch" name="empsearch">
+            <input type="submit" value='SEARCH'/>
+          </form>
+    
+
+          <h4 class='text-center hbox'>MONTHLY  PRESENT  EMPLOYEES </h4>
+       
+        <table>
+           <tr>
+             <th style='background-color:rgb(7, 29, 7); color:white;'class='col-sm-1'><em>DATE</em></th>
+             <th style='background-color:rgb(7, 29, 7); color:white;'class='col-sm-1'><em>EMP ID</em></th>
+             <th style='background-color:rgb(7, 29, 7); color:white;'class='col-sm-1'><em>NAME</em></th>
+             <th style='background-color:rgb(7, 29, 7); color:white;'class='col-sm-1'><em>IN TIME</em></th>
+             <th style='background-color:rgb(7, 29, 7); color:white;'class='col-sm-1'><em>OUT TIME</em></th>
+             <th style='background-color:rgb(7, 29, 7); color:white;'class='col-sm-1'><em>WORK TYPE</em></th>
+            </tr>
+
+            {% for i in a %}
+            <tr>
+                <td><em>{{i.date}}</em></td>
+                <td><em>{{i.emp_id_id}}</em></td>
+                <td><em>{{i.name}}</em></td>
+                <td><em>{{i.In_Time}}</em></td>
+                <td><em>{{i.Out_Time}}</em></td>
+                <td><em>{{i.Work_type}}</em></td>
+            </tr>
+            {% endfor %}
+            </table><br>
+            <a style='margin-left:5%;' href="{% url 'home' %}" class='btn btn-info'>Back To Home</a>
+        </div>
+    </div>
+</div>
+
+          
+        <script src="" async defer></script>
+    </body>
+</html>

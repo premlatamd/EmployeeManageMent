@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script src="https://kit.fontawesome.com/39cd6f5dff.js" crossorigin="anonymous"></script>
+        <title>EMPLOYEE MANAGEMENT</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/ur.css' %}">
+    
+    </head>
+    <body>
+        
+    <div class="container-fluid ">
+    <table class="table hbox"><tr>
+        <th><i class="fa-solid fa-briefcase"></i> EMPLOYEE MANAGEMENT SYSTEM </th>
+    </tr>
+    </table>
+    </div>
+
+    <div class="container">
+        <table class="table">
+        <tr>
+        <th class="t1"><i class="fa-solid fa-cloud "></i> DASHBOARD</th>
+        </tr>
+        </table><hr>
+
+        <div class="row">
+        
+            {% if perms.testapp.add_usermodel %}
+            <div class="col-sm-3">
+                <a href="{% url 'add' %}" class="btn btn-default btn1"><i class="fa-sharp fa-solid fa-user-plus"></i><h1 class="lead">ADD<br>EMPLOYEE</h1></a>
+            </div>
+            {% endif %} 
+
+            <div class="col-sm-3">
+                <a href="{% url 'info' %}" class="btn btn-default btn1"><i class="fa-solid fa-user-group"></i><h1 class="lead">REGISTERED EMPLOYEES</h1></a>
+            </div>
+
+        <div class="col-sm-3 ">  
+        <a href="{% url 'present' %}" type="button"  class="btn btn-default btn3"><i class="fa-solid fa-user-check"></i><h1 class="lead">PRESENT EMPLOYEES </h1></a>
+        </div>
+        
+        <div class="col-sm-3">  
+            <a href="{% url 'salary' %}" type="button"  class="btn btn-default btn3"><i class="fa-solid fa-hand-holding-dollar"></i><h1 class="lead">SALARY INFORMATION</h1></a>
+         </div>
+
+        
+    </div><br><br><br>
+    <div class='row'>
+        <a  type='button' class= "btn btn-info" href={% url 'signout' %}>LOGOUT</a>
+    </div>
+</div>
+
+
+        <script src="" async defer></script>
+    </body>
+</html>

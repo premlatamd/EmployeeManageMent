@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script src="https://kit.fontawesome.com/39cd6f5dff.js" crossorigin="anonymous"></script>
+        <title>ATTENDENCE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mycss.css' %}">
+    </head>
+    <body>
+        <style>
+            .h{
+                background-color:#008080;
+            }
+          .m{ 
+            color:whitesmoke;
+            background-color: black;
+            margin-left:0%;
+            border-radius: 15px;
+           }
+           input[type=text] {
+            width: 100%;
+            background-color: #D0D0D0;
+            color:  black;
+           }
+           input[type=date] {
+            width: 100%;
+            background-color: #D0D0D0;
+            color: black;
+           }
+
+           input[type=number] {
+            width: 100%;
+            background-color: #D0D0D0;
+            color:  black;
+           }
+           input[type=time] {
+            width: 100%;
+            background-color: #D0D0D0;
+            color: black;
+           }
+
+           select{
+            width: 100%;
+            background-color: #D0D0D0;
+            color: black;
+           }
+           .p{
+            width:100%;
+            margin:0 auto;
+          }
+          
+          table{
+            background-color: black;
+            color:white;
+            margin-left: 5%;
+            margin-right: 0%;
+            width:90%;
+          }
+          table, td, th {  
+            border: 1px solid white;
+            text-align: center;
+            padding: 5px;
+          }
+         
+       </style>
+        <div class='container mt-3'>
+            <div class='row'>
+                <div class='col-sm-4 offset-md-0.5 m'><br>
+                    <div class='form-container'>
+                    <h4 class='text-center h'><span style='font-size:20px;'>&#127826 </span>ATTENDENCE OF EMPLOYEE</h4>
+                   
+                    <form action=""  method="POST" class='d-inline' novalidate>
+                        {% if messages %}
+                            <ul class="alert alert-danger" style="list-style: none;">
+                                {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        {% csrf_token %}
+                        {{fm.non_field_errors}}
+                    {% for f in fm %}
+                    <div>
+                      <strong><em>{{f.label_tag}} {{f}} {{f.errors|striptags}}</em></strong>
+                    </div>
+                    {% endfor %}<br>
+                        <input type='submit' class='btn btn-success' value='ADD And Save'/>
+                        <a href="{% url 'info' %}" class='btn btn-info'>Back</a>
+                    </form>
+            </div><br>
+        </div>
+                    <div class='col-sm-7 offset-sm-1'>
+                            <h4 class='text-center hbox'>EMPLOYEE'S DETAILS</h4>
+                    
+                            <table>
+                                <tr>
+                                    
+                                    <th style='background-color:rgb(7, 29, 7); color:white;'class="col-sm-4">Date</th>
+                                    <th style='background-color:rgb(7, 29, 7); color:white;'class="col-sm-1">In_Time</th>
+                                    <th style='background-color:rgb(7, 29, 7); color:white;'class="col-sm-1">Out_Time</th>
+                                    <th style='background-color:rgb(7, 29, 7); color:white;'class="col-sm-1">Work_Type</th>
+                                    <th style='background-color:rgb(7, 29, 7); color:white;'class="col-sm-1">Salary</th>
+                                    <th style='background-color:rgb(7, 29, 7); color:white;'class="col-sm-1">Action</th>
+                                </tr>
+                                {% for i in s %}
+                                
+                                <tr>    
+                                    <td>{{i.date}}</td>
+                                    <td>{{i.In_Time}}</td>
+                                    <td>{{i.Out_Time}}</td>
+                                    <td>{{i.Work_type}}</td>
+                                    <td>{{i.Salary}}</td>
+                                    <td>
+                                        &nbsp<a style="color:darkgreen;" href="{% url 'update_attend' i.id %}" role="button"><i class="fa-solid fa-pen"></i></a>&nbsp&nbsp
+                                        <form action='' method='GET' class='d-inline' novalidate>
+                                            {% csrf_token %}
+                                            <a  style=" color: #ff0000	;" href="{% url 'delete_attend' i.id %}" onclick="return confirm('Are you sure you want to delete this data?');" role="button"><i class="fa-solid fa-trash"></i></a>
+                                        </form>
+                                    </td>
+                                </tr>
+                               
+                                {% endfor %}
+        </div>
+    </div>
+</div>
+      
+        
+        <script src="" async defer></script>
+    </body>
+</html>

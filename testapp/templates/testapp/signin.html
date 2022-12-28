@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script src="https://kit.fontawesome.com/39cd6f5dff.js" crossorigin="anonymous"></script>
+        <title>siginin</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mycss.css' %}">
+    </head>
+    <body>
+        <style>
+            .h{
+                background-color:#008080;
+            }
+          .m{ 
+            color:whitesmoke;
+            background-color: black;
+            margin-left:30%;
+            border-radius: 15px;
+           }
+           input[type=text] {
+            width: 100%;
+            padding: 10px 10px;
+            box-sizing: border-box;
+            border: none;
+            background-color: #D0D0D0;
+            color: black;
+           }
+           input[type=email] {
+            width: 100%;
+            padding: 10px 10px;
+            box-sizing: border-box;
+            border: none;
+            background-color: #D0D0D0;
+            color: white;
+           }
+
+           input[type=number] {
+            width: 100%;
+            padding: 10px 10px;
+            box-sizing: border-box;
+            border: none;
+            background-color: #D0D0D0;
+            color: white;
+           }
+           input[type=password] {
+            width: 100%;
+            padding: 10px 10px;
+            box-sizing: border-box;
+            border: none;
+            background-color: #D0D0D0;
+            color: black;
+           }
+           .bbox{
+            color:rgb(33, 155, 33);
+            text-shadow: 2px 2px;
+          }
+         
+       </style>
+       <div class='container mt-5'>
+        <div class='row'>
+            <div class='col-sm-5 offset-md-3 m'><br>
+         
+         <h2  class='h'><span style='font-size:20px; margin-left:60px;'>&#127826 </span>WELCOME HERE <span style='font-size:20px;'>&#127826 </span></h2>
+            <h3 class='text-center'><span class='bbox'>Hello Friends !</span> <i style="color:black; background:#ff9900; border-radius:50%;"   class="fa-regular fa-face-smile"></i></h3>
+
+        <form action='' method='post' novalidate>
+            {% csrf_token %}
+            {% if fm.non_field_errors %}
+            <div class='alert alert-danger'><em><strong>{{fm.non_field_errors|striptags}}</strong></em></div>
+            {% endif %}
+            
+            {% for f in fm %}
+           
+            <div> <strong>{{f.label_tag}} {{f}} <span class='errors'> <em>{{f.errors|striptags}}</em></span> </strong></div>
+           
+            {% endfor %}
+            <br><input type='submit' value='SIGN IN' role='button' class='btn btn-info'/>  
+            <a href="{% url 'signup' %}" role='button' class='btn btn-info'>SIGN UP</a>  
+        </form>
+    </br>
+</div>
+</div>     
+        
+<script src="{% static 'enroll/js/jquery.js' %}" ></script>
+<script src="{% static 'enroll/js/popper.js' %}" ></script>
+<script src="{% static 'enroll/js/bootstrap.js' %}"></script>
+    </body>
+</html>
